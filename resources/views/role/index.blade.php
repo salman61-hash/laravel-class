@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
+    <a href="{{url('/role/create')}}" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Create
+    </a
     @if (session('success'))
     <p style="color: green;">{{ session('success') }}</p>
     @endif
@@ -28,12 +31,12 @@
                 <tbody>
                     @foreach ($users as $abc)
                     <tr>
-                        <th scope="row">{{ $abc['id'] }}</th>
-                        <td>{{ $abc['name'] }}</td>
-                        <td>{{ $abc['address'] }}</td>
+                        <th scope="row">{{ $abc->id }}</th>
+                        <td>{{ $abc->name }}</td>
+                        <td>{{ $abc->address }}</td>
                         <td>
                             <!-- Optional: Add action buttons with icons -->
-                            <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i> Edit</a>
+                            <a href="{{url('/role/edit/{}')}}" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i> Edit</a>
                             <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Delete</a>
                         </td>
                     </tr>

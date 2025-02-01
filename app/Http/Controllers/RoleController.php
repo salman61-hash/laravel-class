@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Container\Attributes\DB as AttributesDB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
     function index(){
 
-        $users=[
-            ["id"=>1, "name"=>"akash","address"=>"Dhaka"],
-            ["id"=>2, "name"=>"jibon","address"=>"Dhaka"],
-            ["id"=>3, "name"=>"akash","address"=>"Dhaka"],
-            ["id"=>4, "name"=>"akash","address"=>"Dhaka"],
-            ["id"=>5, "name"=>"akash","address"=>"Dhaka"]
-        ];
+        $users=DB::select('select * from info');
+        // print_r($users);
         return view('role.index',compact('users'));
     }
 
@@ -33,6 +30,16 @@ class RoleController extends Controller
             "name"=>"required|min:3",
             "address"=>"required|min:3"
         ]);
-        return redirect("role")->with("success","data saved successfully");
+        DB::select("insert into info (name,address) values('$request->name','$request->address')");
+
+
+        return redirect("/role")->with("success","data saved successfully");
+
+
     }
+
+
+
+
+
 }
